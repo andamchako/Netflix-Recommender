@@ -83,8 +83,7 @@ def movie_model(list_title):
     listings = score_series_1.append(score_series_2).append(score_series_3).sort_values(ascending = False)
 
     #listings.drop_duplicates(inplace=True)
-
-def recommendations(title, cosine_sim = cos_sim): 
+ 
     recommended_movies = [] 
     index = list(listings.index) 
     similarity_scores = pd.Series(cosine_sim[index]).sort_values(ascending = False) 

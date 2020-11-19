@@ -1,10 +1,3 @@
-import pandas as pd
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import TfidfVectorizer
-from text_processor import preprocess_description
-
-movies = pd.read_csv('movies.csv')
-
 import re
 from string import punctuation
 import nltk
@@ -38,25 +31,3 @@ def preprocess_description(text):
     description = description.replace("'ve", " have") 
     description = description.replace("'d", " would") 
     return description
-
-def recommendations(title, cosine_sim): 
-    movies["plot"]= movies["description"].apply(preprocess_description)
-
-    # Vectorizing pre-processed movie plots using TF-IDF 
-    tfidfvec = TfidfVectorizer() 
-    tfidf_movieid = tfidfvec.fit_transform((movies["plot"])) 
-  
-    # Finding cosine similarity between vectors 
-    cosine_sim = cosine_similarity(tfidf_movieid, tfidf_movieid)
-
-    # Storing indices of the data 
-    indices = pd.Series(movies.index) 
-    
-    recommended_movies = [] 
-    index = indices[indices == title].index[0] 
-    similarity_scores = pd.Series(cosine_sim[index]).sort_values(ascending = False) 
-    top_10_movies = list(similarity_scores.index) 
-    for i in top_10_movies: 
-        recommended_movies.append(list(movies.index)[i]) 
-    #recommended_movies=list(movies['title'].iloc[indices])
-    return recommended_movies
