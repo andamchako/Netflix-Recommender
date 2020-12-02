@@ -1,4 +1,4 @@
-# Streamlit-based Recommender System
+# Streamlit-based Netflix Recommender System
 #### By Anda Mchako
 
 ![Movie_Recommendations](resources/imgs/Image_header.png)
@@ -11,7 +11,7 @@ One application where this is especially true surrounds movie content recommenda
 
 Clone the repository
 ```
-https://github.com/andamchako/Netflix-Recommender.git
+https://github.com/andamchako/Netflix-Recommender
 ```
 
 ### Prerequisites
@@ -62,7 +62,7 @@ Coming soon
 
 ## Authors
 
-* **ANDA MCHAKO** - *Data analyst* - [andamchako](https://https://github.com/andamchako)
+* **ANDA MCHAKO** - [andamchako](https://https://github.com/andamchako)
 
 
 ## Acknowledgments
@@ -72,5 +72,5 @@ Coming soon
 * KDNuggets
 * Towards data science blog posts
 * Medium blog posts
-* Explore Data Science Academy
+* Explore Data Science Academy - [EXPLORE](https://github.com/Explore-AI)
 
