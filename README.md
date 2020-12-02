@@ -33,7 +33,7 @@ To run the app locally:
 cd Netflix-Recommender/
 streamlit run app.py
 ```
-The app contains 5 main pages:
+The app contains 3 main pages:
 1. Recommender System
 2. Solution Overview
 3. Meet the Author
@@ -62,8 +62,6 @@ Coming soon
 
 ## Authors
 
-* **MONICA FARRELL** - *DevOps engineer* - [monicafar147](https://github.com/monicafar147)
-* **ZINTLE FALTEIN-MAQUBELA** - *App developer* - [ZintleFaltein](https://github.com/ZintleFaltein)
 * **ANDA MCHAKO** - *Data analyst* - [andamchako](https://https://github.com/andamchako)
 
 
