@@ -13,14 +13,37 @@ import joblib,os
 # general
 import numpy as np 
 import pandas as pd
+#import pickle
 #import dill as pickle
 
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
+#from utils.text_processor import preprocess_description
+
+#titles = pd.read_csv('netflix_titles.csv')
+
+#import re
+#from string import punctuation
+#import nltk
+#nltk.download(['averaged_perceptron_tagger','punkt','wordnet','stopwords'])
+#from nltk.corpus import stopwords 
+#from nltk.stem import WordNetLemmatizer 
+
+##lemmatizer = WordNetLemmatizer() 
+#stop_words = set(stopwords.words('english')) 
+#VERB_CODES = {'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'}
+
 # custom functions
-from text_processor import preprocess_description
-from recommender import recommendations
+#from recommenders.recommender import preprocess_description
+from recommenders.recommender import recommendations
 
 #load data
-movies = pd.read_csv('movies.csv')
+titles = pd.read_csv('netflix_titles.csv')
+
+#unpickle model
+#model_load_path = "model.pkl"
+#with open(model_load_path,'rb') as file:
+ #   recommendations = pickle.load(file)
 
 # team slides page
 team_page   = read_file("profile.html")
@@ -40,13 +63,13 @@ def main():
         
         # choose movie from list
         st.write('### Enter Your Favorite Movie')
-        movie = st.selectbox('Movie Choice',sorted(movies['title']))
+        movie = st.selectbox('Movie Choice',titles['title'])
 
         if st.button("Recommend"):
             try:
                 with st.spinner('Crunching the numbers...'):
                     #movie = preprocess_description
-                    top_recommendations = recommendations(movie,cosine_sim=cos_sim)
+                    top_recommendations = recommendations(movie)
             
                 st.title("We think you'll like:")
                 for i,j in enumerate(top_recommendations):
