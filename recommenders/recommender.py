@@ -42,10 +42,10 @@ def preprocess_description(text):
 def recommendations(title): 
     
     # Required columns - Title and movie plot
-    content = df[["title", "description"]]           
+    content = titles[["title", "description"]]           
     content = content.set_index('title')
     
-    content["plot"]= content["description"].apply(preprocess_sentences)
+    content["plot"]= content["description"].apply(preprocess_description)
     
     # Vectorizing pre-processed movie plots using TF-IDF 
     tfidfvec = TfidfVectorizer() 

@@ -18,23 +18,7 @@ import pandas as pd
 
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
-#from utils.text_processor import preprocess_description
 
-#titles = pd.read_csv('netflix_titles.csv')
-
-#import re
-#from string import punctuation
-#import nltk
-#nltk.download(['averaged_perceptron_tagger','punkt','wordnet','stopwords'])
-#from nltk.corpus import stopwords 
-#from nltk.stem import WordNetLemmatizer 
-
-##lemmatizer = WordNetLemmatizer() 
-#stop_words = set(stopwords.words('english')) 
-#VERB_CODES = {'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'}
-
-# custom functions
-#from recommenders.recommender import preprocess_description
 from recommenders.recommender import recommendations
 
 #load data
@@ -63,7 +47,7 @@ def main():
         
         # choose movie from list
         st.write('### Enter Your Favorite Movie')
-        movie = st.selectbox('Movie Choice',titles['title'])
+        movie = st.selectbox('Movie Choice',sorted(titles['title']))
 
         if st.button("Recommend"):
             try:
