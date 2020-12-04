@@ -7,6 +7,7 @@ titles = pd.read_csv('netflix_titles.csv')
 import re
 from string import punctuation
 import nltk
+nltk.download(['averaged_perceptron_tagger','punkt','wordnet','stopwords'])
 from nltk.corpus import stopwords 
 from nltk.stem import WordNetLemmatizer 
 
