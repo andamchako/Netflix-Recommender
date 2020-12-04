@@ -1,14 +1,12 @@
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
-#from utils.text_processor import preprocess_description
 
 titles = pd.read_csv('netflix_titles.csv')
 
 import re
 from string import punctuation
 import nltk
-nltk.download(['averaged_perceptron_tagger','punkt','wordnet','stopwords'])
 from nltk.corpus import stopwords 
 from nltk.stem import WordNetLemmatizer 
 
@@ -42,7 +40,7 @@ def preprocess_description(text):
 def recommendations(title): 
     
     # Required columns - Title and movie plot
-    content = titles[["title", "description"]]           
+    content = titles[["title", "description"]]
     content = content.set_index('title')
     
     content["plot"]= content["description"].apply(preprocess_description)
@@ -56,11 +54,12 @@ def recommendations(title):
     
     # Storing indices of the data 
     indices = pd.Series(content.index)
-    
-    recommended_movies = [] 
+     
     index = indices[indices == title].index[0] 
     similarity_scores = pd.Series(cos_sim[index]).sort_values(ascending = False) 
-    top_10_movies = list(similarity_scores.iloc[1:11].index) 
-    for i in top_10_movies: 
-        recommended_movies.append(list(content.index)[i]) 
+    top_10_movies = list(similarity_scores[1:11].index) 
+    
+    recommended_movies = [list(content.index)[i] for i in top_10_movies]
+    
     return recommended_movies
+

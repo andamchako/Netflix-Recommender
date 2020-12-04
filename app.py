@@ -3,7 +3,7 @@
     Author: Anda Mchako.
 """
 # Helper functions 
-from config  import *
+from config import *
 from resources.helper_functions import *
 
 # Streamlit dependencies
@@ -13,8 +13,6 @@ import joblib,os
 # general
 import numpy as np 
 import pandas as pd
-#import pickle
-#import dill as pickle
 
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -24,10 +22,6 @@ from recommenders.recommender import recommendations
 #load data
 titles = pd.read_csv('netflix_titles.csv')
 
-#unpickle model
-#model_load_path = "model.pkl"
-#with open(model_load_path,'rb') as file:
- #   recommendations = pickle.load(file)
 
 # team slides page
 team_page   = read_file("profile.html")
@@ -48,6 +42,7 @@ def main():
         # choose movie from list
         st.write('### Enter Your Favorite Movie')
         movie = st.selectbox('Movie Choice',sorted(titles['title']))
+
 
         if st.button("Recommend"):
             try:
