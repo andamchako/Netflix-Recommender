@@ -29,7 +29,7 @@ team_page   = read_file("profile.html")
 # The main function where we will build the actual app
 def main():
     """Movie Recommender App with Streamlit """
-    st.image("resources/images/_header.jpeg", width=700)
+    st.image("resources/images/_header.jpeg", width=500)
     st.title("NetFliks Movie Recommender")
     st.write('-----------------------------------------------')
 
