@@ -21,6 +21,8 @@ from recommenders.recommender import recommendations
 
 #load data
 titles = pd.read_csv('netflix_titles.csv')
+movies = titles[titles.type=='Movie']
+series = titles[titles.type=='TV Show']
 
 
 # team slides page
@@ -29,8 +31,8 @@ team_page   = read_file("profile.html")
 # The main function where we will build the actual app
 def main():
     """Movie Recommender App with Streamlit """
-    st.image("resources/images/_header.jpeg", width=700)
-    st.title("NetFliks Movie Recommender")
+    st.title("NetFliks Recommender")
+    st.image("resources/images/logo2.png", width=700)
     st.write('-----------------------------------------------')
 
     page_options = ["Recommender System","Solution Overview", "About The Author"]
@@ -38,23 +40,47 @@ def main():
 
     
     if page_selection == "Recommender System":
+
+        # Recommender System algorithm selection
+        sys = st.radio("Select Recommender",
+                       ('Movie Recommendations',
+                        'Series Recommendations'))
         
         # choose movie from list
-        st.write('### Enter Your Favorite Movie')
-        movie = st.selectbox('Movie Choice',sorted(titles['title']))
+        #st.write('### Enter Your Selection')
+        #movie = st.selectbox('Movie Choice',sorted(titles['title']))
 
-
-        if st.button("Recommend"):
-            try:
-                with st.spinner('Crunching the numbers...'):
+        # Perform top-10 movie recommendation generation
+        if sys == 'Movie Recommendations':
+            movie = st.selectbox('Movie Selection',sorted(movies['title']))
+            if st.button("Recommend"):
+                try:
+                    with st.spinner('Crunching the numbers...'):
                     #movie = preprocess_description
-                    top_recommendations = recommendations(movie)
+                        top_recommendations = recommendations(movie)
             
-                st.title("We think you'll like:")
-                for i,j in enumerate(top_recommendations):
-                    st.subheader(str(i+1)+'. '+j)
-            except:
-                st.error("Oops! Looks like this algorithm does't work.\
+                    st.title("You might you'll like:")
+                    for i,j in enumerate(top_recommendations):
+                        st.subheader(str(i+1)+'. '+j)
+                except:
+                    st.error("Oops! Looks like this algorithm does't work.\
+                              We'll need to fix it!")
+
+        # Perform top-10 movie recommendation generation
+        if sys == 'Series Recommendations':
+
+            show = st.selectbox('Series Selection',sorted(series['title']))
+            if st.button("Recommend"):
+                try:
+                    with st.spinner('Crunching the numbers...'):
+                    #movie = preprocess_description
+                        top_recommendations = recommendations(show)
+            
+                    st.title("You might you'll like:")
+                    for i,j in enumerate(top_recommendations):
+                        st.subheader(str(i+1)+'. '+j)
+                except:
+                    st.error("Oops! Looks like this algorithm does't work.\
                               We'll need to fix it!")
 
     if page_selection == "Solution Overview":
