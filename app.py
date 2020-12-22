@@ -31,10 +31,9 @@ team_page   = read_file("profile.html")
 # The main function where we will build the actual app
 def main():
     """Movie Recommender App with Streamlit """
-    st.title("NetFliks Recommender")
-    st.image("resources/images/logo2.png", width=700)
+    st.image("resources/images/logo2.png", width=500)
+    st.title("NetFliks Movie Recommender")
     st.write('-----------------------------------------------')
-
     page_options = ["Recommender System","Solution Overview", "About The Author"]
     page_selection = st.sidebar.selectbox("Choose Option", page_options)
 
